@@ -1,4 +1,4 @@
-import { compute } from '../compute';
+import { recommendTickets } from '../index';
 
 let journey;
 
@@ -26,7 +26,7 @@ describe('2 days journey', () => {
             }
           ];
     
-          expect(compute(journey)).toEqual(expectedData);
+          expect(recommendTickets(journey)).toEqual(expectedData);
         });
       });
       describe('AND arriving to and leaving from zone C', () => {
@@ -45,10 +45,10 @@ describe('2 days journey', () => {
             }
           ];
     
-          expect(compute(journey)).toEqual(expectedData);
+          expect(recommendTickets(journey)).toEqual(expectedData);
         });
       });
-    }),
+    });
     describe('AND guidebook is wanted', () => {
       beforeAll(() => {
         journey = { ...journey, "guidebookWanted": true };
@@ -65,7 +65,7 @@ describe('2 days journey', () => {
             }
           ];
     
-          expect(compute(journey)).toEqual(expectedData);
+          expect(recommendTickets(journey)).toEqual(expectedData);
         });
       });
       describe('AND arriving to and leaving from zone C', () => {
@@ -84,11 +84,11 @@ describe('2 days journey', () => {
             }
           ];
     
-          expect(compute(journey)).toEqual(expectedData);
+          expect(recommendTickets(journey)).toEqual(expectedData);
         });
       });
     })
-  }),
+  });
   describe('AND hotel is in zone C', () => {
     beforeAll(() => {
       journey = { ...journey, "hotelZone": "C" };
@@ -106,9 +106,9 @@ describe('2 days journey', () => {
           }
         ];
   
-        expect(compute(journey)).toEqual(expectedData);
+        expect(recommendTickets(journey)).toEqual(expectedData);
       });
-    }),
+    });
     describe('AND guidebook is wanted', () => {
       beforeAll(() => {
         journey = { ...journey, "guidebookWanted": true };
@@ -121,7 +121,7 @@ describe('2 days journey', () => {
           }
         ];
   
-        expect(compute(journey)).toEqual(expectedData);
+        expect(recommendTickets(journey)).toEqual(expectedData);
       });
     })
   })

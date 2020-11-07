@@ -1,4 +1,4 @@
-import { ticketTypes } from "./data/tickets";
+import { ticketTypes } from "../../data/tickets";
 
 const filterTicketsByDays = (tickets, numberOfDays) => {
   return tickets.filter(ticket => ticket.days === numberOfDays);
@@ -71,7 +71,7 @@ const recommendForMultipleDays = (journey) => {
   return recommendedTickets;
 }
 
-export const compute = (journey) => {
+export const recommendTickets = (journey) => {
   let recommendedTickets = [];
 
   if (journey.days === 1) {

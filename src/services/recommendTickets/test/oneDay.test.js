@@ -1,4 +1,4 @@
-import { compute } from '../compute';
+import { recommendTickets } from '../index';
 
 let journey;
 
@@ -18,9 +18,9 @@ describe('One-day business trip (no sightseeing)', () => {
         }
       ];
   
-      expect(compute(journey)).toEqual(expectedData);
+      expect(recommendTickets(journey)).toEqual(expectedData);
     });
-  }),
+  });
   describe('arriving to and leaving from outside the city', () => {
     beforeAll(() => {
       journey = { ...journey, "arrivalAndDeparture": "C" };
@@ -33,7 +33,7 @@ describe('One-day business trip (no sightseeing)', () => {
         }
       ];
   
-      expect(compute(journey)).toEqual(expectedData);
+      expect(recommendTickets(journey)).toEqual(expectedData);
     })
   })
 });
@@ -54,9 +54,9 @@ describe('One-day sightseeing trip', () => {
         }
       ];
   
-      expect(compute(journey)).toEqual(expectedData);
+      expect(recommendTickets(journey)).toEqual(expectedData);
     });
-  }),
+  });
   describe('arriving to and leaving from outside the city', () => {
     beforeAll(() => {
       journey = { ...journey, "arrivalAndDeparture": "C" };
@@ -69,7 +69,7 @@ describe('One-day sightseeing trip', () => {
         }
       ];
   
-      expect(compute(journey)).toEqual(expectedData);
+      expect(recommendTickets(journey)).toEqual(expectedData);
     })
   })
 });
