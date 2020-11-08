@@ -1,7 +1,7 @@
 import { ticketTypes } from "../../data/tickets";
 
 const filterTicketsByDays = (tickets, numberOfDays) => {
-  return tickets.filter(ticket => ticket.days === numberOfDays);
+  return tickets.filter(ticket => ticket.days === parseInt(numberOfDays));
 }
 
 const filterTicketsByZones = (tickets, zones) => {
@@ -13,16 +13,23 @@ const filterTicketsByNumberOfTrips = (tickets) => {
 }
 
 const filterTicketsByGuidebook = (tickets, guidebookWanted) => {
-  return tickets.filter(ticket => ticket.guidebook === guidebookWanted);
+  let expectedValue;
+  if (guidebookWanted === "Yes") {
+    expectedValue = true;
+  } else {
+    expectedValue = false;
+  }
+
+  return tickets.filter(ticket => ticket.guidebook === expectedValue);
 }
 
 const recommendForOneDay = (journey) => {
   let filteredTickets = [ ...ticketTypes ];
 
-  if (journey.tripType === "business") {
+  if (journey.purpose === "Business") {
     filteredTickets = filterTicketsByNumberOfTrips(filteredTickets);
-  } else if (journey.tripType === "sightseeing") {
-    filteredTickets = filterTicketsByDays(ticketTypes, journey.days);
+  } else if (journey.purpose === "Sightseeing") {
+    filteredTickets = filterTicketsByDays(ticketTypes, journey.numberOfDays);
   }
 
   if (journey.arrivalAndDeparture === "C") {
@@ -33,7 +40,7 @@ const recommendForOneDay = (journey) => {
 
   return [
     {
-      "amount": journey.tripType === "business" ? 2 : 1,
+      "amount": journey.purpose === "Business" ? 2 : 1,
       "name": filteredTickets.name
     }
   ];
@@ -42,7 +49,7 @@ const recommendForOneDay = (journey) => {
 const recommendForMultipleDays = (journey) => {
   let filteredTickets = [ ...ticketTypes ];
 
-  filteredTickets = filterTicketsByDays(ticketTypes, journey.days);
+  filteredTickets = filterTicketsByDays(filteredTickets, journey.numberOfDays);
 
   if (journey.hotelZone !== "C") {
     filteredTickets = filterTicketsByZones(filteredTickets, "AB");
@@ -51,7 +58,7 @@ const recommendForMultipleDays = (journey) => {
   }
 
   filteredTickets = filterTicketsByGuidebook(filteredTickets, journey.guidebookWanted);
-  
+
   let recommendedTickets = [
     {
       "amount": 1,
@@ -74,7 +81,7 @@ const recommendForMultipleDays = (journey) => {
 export const recommendTickets = (journey) => {
   let recommendedTickets = [];
 
-  if (journey.days === 1) {
+  if (journey.numberOfDays === 1) {
     recommendedTickets = recommendForOneDay(journey);
   } else {
     recommendedTickets = recommendForMultipleDays(journey);

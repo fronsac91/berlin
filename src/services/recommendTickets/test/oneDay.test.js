@@ -4,7 +4,7 @@ let journey;
 
 describe('One-day business trip (no sightseeing)', () => {
   beforeAll(() => {
-    journey = { "days": 1, "tripType": "business" };
+    journey = { "numberOfDays": 1, "purpose": "Business" };
   });
   describe('arriving to and leaving from the city', () => {
     beforeAll(() => {
@@ -40,7 +40,7 @@ describe('One-day business trip (no sightseeing)', () => {
 
 describe('One-day sightseeing trip', () => {
   beforeAll(() => {
-    journey = { "days": 1, "tripType": "sightseeing" };
+    journey = { "numberOfDays": 1, "purpose": "Sightseeing" };
   });
   describe('arriving to and leaving from the city', () => {
     beforeAll(() => {

@@ -4,7 +4,7 @@ let journey;
 
 describe('2 days journey', () => {
   beforeAll(() => {
-    journey = { "days": 2 };
+    journey = { "numberOfDays": 2 };
   });
   describe('AND hotel is in either zone A or B', () => {
     beforeAll(() => {
@@ -12,7 +12,7 @@ describe('2 days journey', () => {
     });
     describe('AND no guidebook is wanted', () => {
       beforeAll(() => {
-        journey = { ...journey, "guidebookWanted": false };
+        journey = { ...journey, "guidebookWanted": "No" };
       });
       describe('AND arriving to and leaving from zone A or B', () => {
         beforeAll(() => {
@@ -51,7 +51,7 @@ describe('2 days journey', () => {
     });
     describe('AND guidebook is wanted', () => {
       beforeAll(() => {
-        journey = { ...journey, "guidebookWanted": true };
+        journey = { ...journey, "guidebookWanted": "Yes" };
       });
       describe('AND arriving to and leaving from zone A or B', () => {
         beforeAll(() => {
@@ -95,7 +95,7 @@ describe('2 days journey', () => {
     });
     describe('AND no guidebook is wanted', () => {
       beforeAll(() => {
-        journey = { ...journey, "guidebookWanted": false };
+        journey = { ...journey, "guidebookWanted": "No" };
       });
 
       it('should recommend 1 x CityTourCard 48 hours ABC', () => { 
@@ -111,7 +111,7 @@ describe('2 days journey', () => {
     });
     describe('AND guidebook is wanted', () => {
       beforeAll(() => {
-        journey = { ...journey, "guidebookWanted": true };
+        journey = { ...journey, "guidebookWanted": "Yes" };
       });
       it('should recommend 1 x WelcomeCard 48 hours ABC', () => { 
         const expectedData = [

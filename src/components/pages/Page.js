@@ -1,65 +1,42 @@
 import React from 'react';
-import { computeNextPage } from '../../services/nextPage';
+import { nextPage } from '../../services/nextPage';
 import { questions } from '../../data/questions';
 
 const Page = (props) => {
-  const submitHandler = (event, id) => {
-    event.preventDefault();
-    let updatedData = { ...props.data, [id]: props.data[id] };
-    const nextPageId = computeNextPage(updatedData);
-    updatedData = { ...updatedData, currentPage: nextPageId };
-    props.setData(updatedData);
-  };
-
-  const changeHandler = (event, id, type) => {
-    let value = event.target.value;
-    if (type === "number") {
-      value = parseInt(value);
-    }
-    const updatedData = { ...props.data, [id]: value };
-    props.setData(updatedData);
-  };
-
-  const buttonClickHandler = (event, id, option) => {
+  const submitHandler = (event, option) => {
     event.preventDefault();
 
-    let updatedData = { ...props.data, [id]: option };
-    const nextPageId = computeNextPage(updatedData);
+    const updatedJourney = {
+      ...props.data.journey,
+      name: props.name,
+      numberOfDays: props.numberOfDays,
+      [props.id]: option
+    };
+console.log("Page updatedJourney: " + JSON.stringify(updatedJourney, null, 2));
 
-    updatedData = { ...updatedData, currentPage: nextPageId };
+    const nextPageId = nextPage(updatedJourney);
+    const updatedData = { journey: { ...updatedJourney }, currentPage: nextPageId };
+  console.log("Page updatedData: " + JSON.stringify(updatedData, null, 2));
+
     props.setData(updatedData);
   };
 
   const question = questions.filter(q => q.id === props.id)[0];
-  let questionElement;
-  if (question.type === "button") {
-    questionElement = (
-      <form>
-          <p>{question.label}</p>
-          {question.options.map(option => (
-            <button
-              key={`${question.id}-${option}`}
-              type="submit"
-              onClick={(e) => buttonClickHandler(e, question.id, option)}
-            >
-              {option}
-            </button>
-          ))}
-      </form>
-    );
-  } else {
-    questionElement = (
-      <form onSubmit={e => submitHandler(e, question.id)}>
-        <label>
-          {question.label}
-          <input
-            type={question.type}
-            onChange={(e) => changeHandler(e, question.id, question.type)} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-    );
-  }
+  let questionElement = (
+    <form>
+        <label>{question.label}</label>
+        {question.options.map(option => (
+          <button
+            key={`${question.id}-${option}`}
+            type="submit"
+            onClick={(e) => submitHandler(e, option)}
+          >
+            {option}
+          </button>
+        ))}
+    </form>
+  );
+
   return questionElement;
 }
 

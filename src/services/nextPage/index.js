@@ -1,7 +1,11 @@
-export const computeNextPage = (data) => {
+export const nextPage = (data) => {
 //  if (Object.entries(data).length === 0) {
 //    return "name";
 //  }
+
+  if (!data.name) {
+    return "name";
+  }
 
   if (!data.numberOfDays) {
     return "numberOfDays";
@@ -14,6 +18,8 @@ export const computeNextPage = (data) => {
     if (!data.arrivalAndDeparture) {
       return "arrivalAndDeparture";
     }
+
+    return "result";
   } else {
     if (!data.hotelZone) {
       return "hotelZone";
@@ -24,11 +30,17 @@ export const computeNextPage = (data) => {
         return "guidebookWanted";
       }
       
-      if (!data.guidebookWanted) {
+      if (!data.arrivalAndDeparture) {
         return "arrivalAndDeparture";
       }
+
+      return "result";
     } else if (data.hotelZone === "C") {
-      return "guidebookWanted";
+      if (!data.guidebookWanted) {
+        return "guidebookWanted";
+      }
+
+      return "result";
     }
   }
 }
