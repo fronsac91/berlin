@@ -5,6 +5,8 @@ import NumberOfDays from './components/pages/NumberOfDays';
 import Page from './components/pages/Page';
 import Result from './components/pages/Result';
 
+import { useForm } from './hooks/form-hook';
+
 const App = () => {
   const [ data, setData ] = useState({
     currentPage: "name",
@@ -16,19 +18,29 @@ const App = () => {
     }
   });
 
-  const [ name, setName ] = useState("");
-  const [ numberOfDays, setNumberOfDays ] = useState("");
+  const [ inputNameData, inputNameHandler, setInputNameData ] = useForm(
+    {
+      name: {
+        value: "",
+        isValid: false
+      }
+    },
+    false
+  );
+
+  const [ numberOfDays, setNumberOfDays ] = useState(1);
 
   let currentPageElement;
 
   const props = {
     data, setData,
-    name, setName,
-    numberOfDays, setNumberOfDays };
+    inputNameData, setInputNameData,
+    numberOfDays, setNumberOfDays
+   };
 
   switch(data.currentPage) {
     case ("name"):
-      currentPageElement = <Name { ...props } />;
+      currentPageElement = <Name { ...props } inputNameHandler={inputNameHandler} />;
       break;
     case ("numberOfDays"):
       currentPageElement = <NumberOfDays { ...props } />;
@@ -62,17 +74,6 @@ const App = () => {
       <h1>BVG ticket assistance</h1>
 
       {currentPageElement}
-      
-      <p>Name: {name}</p>
-      <p>NumberOfDays: {numberOfDays}</p>
- {/*     <p>Purpose: {data.journey.purpose}</p>
-      <p>ArrivalAndDeparture: {data.journey.arrivalAndDeparture}</p>
-      <p>HotelZone: {data.journey.hotelZone}</p>
-      <p>GuidebookWanted: {JSON.stringify(data.journey.guidebookWanted)}</p>
-      <p>currentPage: {currentPage}</p>
-  */}
-
-  <p>{JSON.stringify(data, null, 2)}</p>
     </div>
   );
 }

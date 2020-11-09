@@ -8,7 +8,7 @@ const Page = (props) => {
 
     const updatedJourney = {
       ...props.data.journey,
-      name: props.name,
+      name: props.inputNameData.inputs.name.value,
       numberOfDays: props.numberOfDays,
       [props.id]: option
     };

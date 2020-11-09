@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { nextPage } from '../../services/nextPage';
 import { questions } from '../../data/questions';
 
@@ -8,7 +9,7 @@ const NumberOfDays = (props) => {
 
     const updatedJourney = { 
       ...props.data.journey,
-      name: props.name,
+      name: props.inputNameData.inputs.name.value,
       numberOfDays: props.numberOfDays
     };
 
@@ -25,10 +26,13 @@ const NumberOfDays = (props) => {
       <label>
         {question.label}
         <input
-          type={question.type}
+          type="number"
+          min="1"
+          max="6"
+          value={props.numberOfDays}
           onChange={(event) => props.setNumberOfDays(event.target.value)} />
       </label>
-      <input type="submit" value="Submit" />
+      <input type="submit" />
     </form>
   );
 

@@ -100,3 +100,12 @@ h1{
   cursor: pointer;
   margin: 20px auto;
 }
+
+.form-box input[type="submit"]:disabled,
+.form-box input[type="submit"]:hover:disabled,
+.form-box input[type="submit"]:active:disabled {
+  background: #ccc;
+  color: #979797;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
