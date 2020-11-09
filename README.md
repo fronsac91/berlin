@@ -1,3 +1,12 @@
+# Berlin public transportation - ticket type assistant
+
+## The application asks the user a couple of questions about his/her proposed stay in Berlin, and gives a recommendation on what ticket types or ticket combinations he/she should choose.
+
+![1-day trips - decision tree](./dia/1-day-trips.jpeg "1-day trips - decision tree")
+![2-day trips - decision tree](./dia/2-day-trips.jpeg "2-day trips - decision tree")
+
+Trips that last 3-6 days follow a very similar decision path than the two-days trip
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
