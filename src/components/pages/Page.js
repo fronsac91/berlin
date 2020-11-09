@@ -12,11 +12,9 @@ const Page = (props) => {
       numberOfDays: props.numberOfDays,
       [props.id]: option
     };
-console.log("Page updatedJourney: " + JSON.stringify(updatedJourney, null, 2));
 
     const nextPageId = nextPage(updatedJourney);
     const updatedData = { journey: { ...updatedJourney }, currentPage: nextPageId };
-  console.log("Page updatedData: " + JSON.stringify(updatedData, null, 2));
 
     props.setData(updatedData);
   };

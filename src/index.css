@@ -3,7 +3,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: url(https://s3.us-east-1.amazonaws.com/nonp-samsungnext-uploads/Berlin-Hero.jpg);
+  background: url("./assets/background.jpg");
   background-size: cover;
   background-position: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
