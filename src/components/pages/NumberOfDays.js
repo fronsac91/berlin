@@ -32,7 +32,7 @@ const NumberOfDays = (props) => {
           value={props.numberOfDays}
           onChange={(event) => props.setNumberOfDays(event.target.value)} />
       </label>
-      <input type="submit" />
+      <input value="Next" type="submit" />
     </form>
   );
 

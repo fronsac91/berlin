@@ -35,7 +35,7 @@ const Name = (props) => {
         errorText="Please enter a valid name."
         onInput={props.inputNameHandler}
       />
-      <input type="submit" disabled={!props.inputNameData.isValid} />
+      <input type="submit" value="Next" disabled={!props.inputNameData.isValid} />
     </form>
   );
 
