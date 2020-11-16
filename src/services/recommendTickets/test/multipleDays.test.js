@@ -1,22 +1,49 @@
 import { recommendTickets } from '../index';
 
+import {
+  NUMBER_OF_DAYS,
+  ARRIVAL_AND_DEPARTURE_ZONE,
+  HOTEL_ZONE,
+  GUIDEBOOK_WANTED
+} from '../../../constants/id';
+
+import {
+  ARRIVAL_AND_DEPARTURE_ZONE_A_OR_B,
+  ARRIVAL_AND_DEPARTURE_ZONE_C,
+  HOTEL_ZONE_A_OR_B,
+  HOTEL_ZONE_C,
+  GUIDEBOOK_WANTED_YES,
+  GUIDEBOOK_WANTED_NO
+} from '../../../constants/options';
+
 let journey;
 
 describe('2 days journey', () => {
   beforeAll(() => {
-    journey = { "numberOfDays": 2 };
+    journey = {
+      [NUMBER_OF_DAYS]: 2
+    };
   });
   describe('AND hotel is in either zone A or B', () => {
     beforeAll(() => {
-      journey = { ...journey, "hotelZone": "B" };
+      journey = {
+        ...journey,
+        [HOTEL_ZONE]: HOTEL_ZONE_A_OR_B
+      };
     });
     describe('AND no guidebook is wanted', () => {
       beforeAll(() => {
-        journey = { ...journey, "guidebookWanted": "No" };
+        journey = {
+          ...journey,
+          [GUIDEBOOK_WANTED]: GUIDEBOOK_WANTED_NO
+        };
       });
       describe('AND arriving to and leaving from zone A or B', () => {
         beforeAll(() => {
-          journey = { ...journey, "arrivalAndDeparture": "A" };
+          journey = {
+            ...journey,
+            [ARRIVAL_AND_DEPARTURE_ZONE]: ARRIVAL_AND_DEPARTURE_ZONE_A_OR_B
+          };
         });
         it('should recommend 1 x CityTourCard 48 hours AB', () => { 
           const expectedData = [
@@ -31,7 +58,10 @@ describe('2 days journey', () => {
       });
       describe('AND arriving to and leaving from zone C', () => {
         beforeAll(() => {
-          journey = { ...journey, "arrivalAndDeparture": "C" };
+          journey = {
+            ...journey,
+            [ARRIVAL_AND_DEPARTURE_ZONE]: ARRIVAL_AND_DEPARTURE_ZONE_C
+          };
         });
         it('should recommend 1 x CityTourCard 48 hours AB + 2 x Extension ticket A/C', () => {  
           const expectedData = [
@@ -51,11 +81,17 @@ describe('2 days journey', () => {
     });
     describe('AND guidebook is wanted', () => {
       beforeAll(() => {
-        journey = { ...journey, "guidebookWanted": "Yes" };
+        journey = {
+          ...journey,
+          [GUIDEBOOK_WANTED]: GUIDEBOOK_WANTED_YES
+        };
       });
       describe('AND arriving to and leaving from zone A or B', () => {
         beforeAll(() => {
-          journey = { ...journey, "arrivalAndDeparture": "A" };
+          journey = {
+            ...journey,
+            [ARRIVAL_AND_DEPARTURE_ZONE]: ARRIVAL_AND_DEPARTURE_ZONE_A_OR_B
+          };
         });
         it('should recommend 1 x CityTourCard 48 hours AB', () => { 
           const expectedData = [
@@ -70,7 +106,10 @@ describe('2 days journey', () => {
       });
       describe('AND arriving to and leaving from zone C', () => {
         beforeAll(() => {
-          journey = { ...journey, "arrivalAndDeparture": "C" };
+          journey = {
+            ...journey,
+            [ARRIVAL_AND_DEPARTURE_ZONE]: ARRIVAL_AND_DEPARTURE_ZONE_C
+          };
         });
         it('should recommend 1 x CityTourCard 48 hours AB + 2 x Extension ticket A/C', () => {  
           const expectedData = [
@@ -91,11 +130,17 @@ describe('2 days journey', () => {
   });
   describe('AND hotel is in zone C', () => {
     beforeAll(() => {
-      journey = { ...journey, "hotelZone": "C" };
+      journey = {
+        ...journey,
+        [HOTEL_ZONE]: HOTEL_ZONE_C
+      };
     });
     describe('AND no guidebook is wanted', () => {
       beforeAll(() => {
-        journey = { ...journey, "guidebookWanted": "No" };
+        journey = {
+          ...journey,
+          [GUIDEBOOK_WANTED]: GUIDEBOOK_WANTED_NO
+        };
       });
 
       it('should recommend 1 x CityTourCard 48 hours ABC', () => { 
@@ -111,7 +156,10 @@ describe('2 days journey', () => {
     });
     describe('AND guidebook is wanted', () => {
       beforeAll(() => {
-        journey = { ...journey, "guidebookWanted": "Yes" };
+        journey = {
+          ...journey,
+          [GUIDEBOOK_WANTED]: GUIDEBOOK_WANTED_YES
+        };
       });
       it('should recommend 1 x WelcomeCard 48 hours ABC', () => { 
         const expectedData = [

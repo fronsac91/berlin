@@ -2,14 +2,16 @@ import React from 'react';
 import { nextPage } from '../../services/nextPage';
 import { questions } from '../../data/questions';
 
+import { NAME, NUMBER_OF_DAYS } from '../../constants/id';
+
 const Page = (props) => {
   const submitHandler = (event, option) => {
     event.preventDefault();
 
     const updatedJourney = {
       ...props.data.journey,
-      name: props.inputNameData.inputs.name.value,
-      numberOfDays: props.numberOfDays,
+      [NAME]: props.inputNameData.inputs[NAME].value,
+      [NUMBER_OF_DAYS]: props.numberOfDays,
       [props.id]: option
     };
 

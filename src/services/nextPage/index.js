@@ -1,46 +1,57 @@
-export const nextPage = (data) => {
-//  if (Object.entries(data).length === 0) {
-//    return "name";
-//  }
+import {
+  NAME,
+  NUMBER_OF_DAYS,
+  PURPOSE_OF_TRIP,
+  ARRIVAL_AND_DEPARTURE_ZONE,
+  HOTEL_ZONE,
+  GUIDEBOOK_WANTED,
+  RESULT
+} from '../../constants/id';
 
-  if (!data.name) {
-    return "name";
+import {
+  HOTEL_ZONE_A_OR_B,
+  HOTEL_ZONE_C
+} from '../../constants/options';
+
+export const nextPage = (journey) => {
+  if (journey[NAME] === undefined) {
+    return NAME;
   }
 
-  if (!data.numberOfDays) {
-    return "numberOfDays";
+  if (journey[NUMBER_OF_DAYS] === undefined) {
+    return NUMBER_OF_DAYS;
   }
 
-  if (data.numberOfDays === 1) {
-    if (!data.purpose) {
-      return "purpose";
+  if (journey[NUMBER_OF_DAYS] === 1) {
+    if (journey[PURPOSE_OF_TRIP] === undefined) {
+      return PURPOSE_OF_TRIP;
     }
-    if (!data.arrivalAndDeparture) {
-      return "arrivalAndDeparture";
+    if (journey[ARRIVAL_AND_DEPARTURE_ZONE] === undefined) {
+      return ARRIVAL_AND_DEPARTURE_ZONE;
     }
 
-    return "result";
+    return RESULT;
   } else {
-    if (!data.hotelZone) {
-      return "hotelZone";
+    if (journey[HOTEL_ZONE] === undefined) {
+      return HOTEL_ZONE;
     }
 
-    if (data.hotelZone === "AB") {
-      if (!data.guidebookWanted) {
-        return "guidebookWanted";
+    if (journey[HOTEL_ZONE] === HOTEL_ZONE_A_OR_B) {
+      if (journey[GUIDEBOOK_WANTED] === undefined) {
+        return GUIDEBOOK_WANTED;
       }
       
-      if (!data.arrivalAndDeparture) {
-        return "arrivalAndDeparture";
+      if (journey[ARRIVAL_AND_DEPARTURE_ZONE] === undefined) {
+        return ARRIVAL_AND_DEPARTURE_ZONE;
       }
 
-      return "result";
-    } else if (data.hotelZone === "C") {
-      if (!data.guidebookWanted) {
-        return "guidebookWanted";
+      return RESULT;
+    } else if (journey[HOTEL_ZONE] === HOTEL_ZONE_C) {
+      if (journey[GUIDEBOOK_WANTED] === undefined) {
+        return GUIDEBOOK_WANTED;
       }
 
-      return "result";
+      return RESULT;
     }
   }
 }

@@ -1,0 +1,7 @@
+export const NAME = "NAME";
+export const NUMBER_OF_DAYS = "NUMBER_OF_DAYS";
+export const PURPOSE_OF_TRIP = "PURPOSE_OF_TRIP";
+export const ARRIVAL_AND_DEPARTURE_ZONE = "ARRIVAL_AND_DEPARTURE_ZONE";
+export const HOTEL_ZONE = "HOTEL_ZONE";
+export const GUIDEBOOK_WANTED = "GUIDEBOOK_WANTED";
+export const RESULT = "RESULT";

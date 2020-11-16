@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { NAME } from '../../constants/id';
+
 import { nextPage } from '../../services/nextPage';
 import { questions } from '../../data/questions';
 import Input from '../formElements/Input';
@@ -15,7 +17,7 @@ const Name = (props) => {
 
     const updatedJourney = {
       ...props.data.journey,
-      name: props.inputNameData.inputs.name.value
+      [NAME]: props.inputNameData.inputs[NAME].value
     };
     const nextPageId = nextPage(updatedJourney);
 
@@ -23,12 +25,12 @@ const Name = (props) => {
     props.setData(updatedData);
   };
 
-  const question = questions.filter(q => q.id === "name")[0];
+  const question = questions.filter(q => q.id === NAME)[0];
 
   let questionElement = (
     <form onSubmit={submitHandler}>
       <Input
-        id="name"
+        id={NAME}
         type="text"
         label={question.label}
         validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(3)]}

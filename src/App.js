@@ -1,5 +1,15 @@
 import { useState } from 'react';
 
+import {
+  NAME,
+  NUMBER_OF_DAYS,
+  PURPOSE_OF_TRIP,
+  ARRIVAL_AND_DEPARTURE_ZONE,
+  HOTEL_ZONE,
+  GUIDEBOOK_WANTED,
+  RESULT
+} from './constants/id';
+
 import Name from './components/pages/Name';
 import NumberOfDays from './components/pages/NumberOfDays';
 import Page from './components/pages/Page';
@@ -9,18 +19,18 @@ import { useForm } from './services/form/validators/form-hook';
 
 const App = () => {
   const [ data, setData ] = useState({
-    currentPage: "name",
+    currentPage: NAME,
     journey: {
-      purpose: null,
-      arrivalAndDeparture: null,
-      hotelZone: null,
-      guidebookWanted: null
+      [PURPOSE_OF_TRIP]: undefined,
+      [ARRIVAL_AND_DEPARTURE_ZONE]: undefined,
+      [HOTEL_ZONE]: undefined,
+      [GUIDEBOOK_WANTED]: undefined
     }
   });
 
   const [ inputNameData, inputNameHandler, setInputNameData ] = useForm(
     {
-      name: {
+      [NAME]: {
         value: "",
         isValid: false
       }
@@ -39,25 +49,25 @@ const App = () => {
    };
 
   switch(data.currentPage) {
-    case ("name"):
+    case (NAME):
       currentPageElement = <Name { ...props } inputNameHandler={inputNameHandler} />;
       break;
-    case ("numberOfDays"):
+    case (NUMBER_OF_DAYS):
       currentPageElement = <NumberOfDays { ...props } />;
       break;
-    case ("purpose"):
-      currentPageElement = <Page id="purpose" { ...props } />;
+    case (PURPOSE_OF_TRIP):
+      currentPageElement = <Page id={PURPOSE_OF_TRIP} { ...props } />;
       break;
-    case ("arrivalAndDeparture"):
-      currentPageElement = <Page id="arrivalAndDeparture" { ...props } />;
+    case (ARRIVAL_AND_DEPARTURE_ZONE):
+      currentPageElement = <Page id={ARRIVAL_AND_DEPARTURE_ZONE} { ...props } />;
       break;
-    case ("hotelZone"):
-      currentPageElement = <Page id="hotelZone" { ...props } />;
+    case (HOTEL_ZONE):
+      currentPageElement = <Page id={HOTEL_ZONE} { ...props } />;
       break;
-    case ("guidebookWanted"):
-      currentPageElement = <Page id="guidebookWanted" { ...props } />;
+    case (GUIDEBOOK_WANTED):
+      currentPageElement = <Page id={GUIDEBOOK_WANTED} { ...props } />;
       break;
-    case ("result"):
+    case (RESULT):
       currentPageElement = <Result data={data} />;
       break;
     default:
