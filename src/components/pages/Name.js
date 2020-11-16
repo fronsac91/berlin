@@ -7,7 +7,7 @@ import Input from '../formElements/Input';
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH
-} from '../../utils/validators';
+} from '../../services/form/validators';
 
 const Name = (props) => {
   const submitHandler = (event) => {

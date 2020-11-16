@@ -5,7 +5,7 @@ import NumberOfDays from './components/pages/NumberOfDays';
 import Page from './components/pages/Page';
 import Result from './components/pages/Result';
 
-import { useForm } from './hooks/form-hook';
+import { useForm } from './services/form/validators/form-hook';
 
 const App = () => {
   const [ data, setData ] = useState({

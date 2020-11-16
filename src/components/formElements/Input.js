@@ -1,6 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
 
-import { validate } from '../../utils/validators';
+import { validate } from '../../services/form/validators';
 
 const inputReducer = (state, action) => {
   switch (action.type) {
